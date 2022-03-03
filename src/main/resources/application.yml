@@ -1,0 +1,15 @@
+spring:
+
+  security:
+    user:
+      name: admin
+      password: 1234
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: admin
+    
+  flyway:
+    enabled: false
+    driver-class-name: org.postgresql.Driver
