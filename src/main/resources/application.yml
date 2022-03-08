@@ -10,6 +10,12 @@ spring:
     username: postgres
     password: admin
     
+  jpa:
+    hibernate:
+      ddl-auto: create
+    generate-ddl: true
+    show-sql: true
+    
   flyway:
     enabled: false
     driver-class-name: org.postgresql.Driver
