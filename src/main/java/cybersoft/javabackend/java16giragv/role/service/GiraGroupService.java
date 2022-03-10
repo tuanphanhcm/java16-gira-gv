@@ -9,4 +9,5 @@ public interface GiraGroupService {
 	List<GiraGroupDTO> findAllDto();
 	GiraGroupDTO createNewGroup(GiraGroupDTO dto);
 	GiraGroupWithRolesDTO addRole(String groupId, String roleId);
+	GiraGroupWithRolesDTO removeRole(String groupId, String roleId);
 }

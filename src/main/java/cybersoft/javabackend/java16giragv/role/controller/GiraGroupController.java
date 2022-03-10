@@ -59,4 +59,18 @@ public class GiraGroupController {
 		
 		return ResponseHelper.getResponse(modifiedGroup, HttpStatus.OK);
 	}
+	
+	@PostMapping("remove-role/{group-id}/{role-id}")
+	public Object removeRole(@PathVariable(name = "group-id") String groupId,
+			@PathVariable(name = "role-id") String roleId) {
+		GiraGroupWithRolesDTO modifiedGroup = service.removeRole(groupId, roleId);
+		
+		if (modifiedGroup == null) {
+			return ResponseHelper.
+					getErrorResponse("Group or Role is not existing"
+							, HttpStatus.BAD_REQUEST);
+		}
+		
+		return ResponseHelper.getResponse(modifiedGroup, HttpStatus.OK);
+	}
 }

@@ -60,4 +60,23 @@ public class GiraGroupServiceImpl implements GiraGroupService {
 		return dto;
 	}
 
+	@Override
+	public GiraGroupWithRolesDTO removeRole(String groupId, String roleId) {
+		GiraGroup group; 
+		GiraRole  role;
+		try {
+			group = repository.getById(UUID.fromString(groupId));
+			role = roleRepository.getById(UUID.fromString(roleId));
+		} catch (EntityNotFoundException ex) {
+			return null;
+		}
+		
+		group.removeRole(role);
+		GiraGroup modifiedGroup = repository.save(group);
+		
+		GiraGroupWithRolesDTO dto = GiraGroupMapper.INSTANCE.toDtoWithRoles(modifiedGroup);
+		
+		return dto;
+	}
+
 }
