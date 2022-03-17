@@ -8,13 +8,13 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-import cybersoft.javabackend.java16giragv.user.validation.validator.UniqueUsernameValidator;
+import cybersoft.javabackend.java16giragv.user.validation.validator.UniqueEmailValidator;
 
-@Constraint(validatedBy = UniqueUsernameValidator.class)
+@Constraint(validatedBy = UniqueEmailValidator.class)
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD})
-public @interface UniqueUsername {
-	String message() default "Username already used.";
+public @interface UniqueEmail {
+	String message() default "Email already used.";
 	
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
