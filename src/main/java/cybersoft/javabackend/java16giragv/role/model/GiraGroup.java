@@ -11,6 +11,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import cybersoft.javabackend.java16giragv.common.model.BaseEntity;
+import cybersoft.javabackend.java16giragv.user.model.GiraUser;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -34,7 +35,15 @@ public class GiraGroup extends BaseEntity {
 		joinColumns = @JoinColumn(name = "group_id"),
 		inverseJoinColumns = @JoinColumn(name = "role_id")
 	)
-	private Set<GiraRole> roles = new LinkedHashSet();
+	private Set<GiraRole> roles = new LinkedHashSet<GiraRole>();
+	
+	@ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	@JoinTable(
+		name = "gira_group_user",
+		joinColumns = @JoinColumn(name = "group_id"),
+		inverseJoinColumns = @JoinColumn(name = "user_id")
+	)
+	private Set<GiraUser> users = new LinkedHashSet<GiraUser>();
 	
 	public void addRole(GiraRole role) {
 		roles.add(role);

@@ -25,7 +25,7 @@
 		</Root>
 		<Logger level="debug" name="cybersoft.javabackend.java16giragv">
 		</Logger>
-		<Logger level="debug" name="org.springframework.boot">
+		<Logger level="info" name="org.springframework.boot">
 		</Logger>
 	</Loggers>
 </Configuration>
