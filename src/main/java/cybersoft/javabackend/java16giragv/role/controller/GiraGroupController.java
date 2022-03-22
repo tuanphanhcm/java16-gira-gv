@@ -24,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping("groups")
+@RequestMapping("api/v1/groups")
 public class GiraGroupController {
 	@Autowired
 	private GiraGroupService service;
