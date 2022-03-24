@@ -12,18 +12,14 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @Component
 public class JwtHelper {
 	
-	public String generateJwtToken(Authentication authentication) {
-		if (authentication == null)
-			return null;
-		
-		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+	public String generateJwtToken(String username) {
 		
 		Date currentDate = new Date();
 		
 		return Jwts.builder()
-				.setSubject(userDetails.getUsername())
+				.setSubject(username)
 				.setIssuedAt(currentDate)
-				.setExpiration(new Date(currentDate.getTime() + 86400))
+				.setExpiration(new Date(currentDate.getTime() + 86400000))
 				.signWith(SignatureAlgorithm.HS512, "whatissecret")
 				.compact();
 	}
