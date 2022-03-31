@@ -6,7 +6,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import cybersoft.javabackend.java16giragv.common.util.ErrorHelper;
 import cybersoft.javabackend.java16giragv.common.util.ResponseHelper;
 import cybersoft.javabackend.java16giragv.role.dto.GiraGroupDTO;
 import cybersoft.javabackend.java16giragv.role.dto.GiraGroupWithRolesDTO;
@@ -44,6 +42,17 @@ public class GiraGroupController {
 		
 		log.info("Find all gira groups STOPPED");
 		return ResponseHelper.getResponse(groups, HttpStatus.OK);
+	}
+	
+	@GetMapping("{group-id}")
+	public Object findGroupById(@PathVariable("group-id") String groupId) {
+		GiraGroupWithRolesDTO group = service.findById(groupId);
+		
+		if (group == null) {
+			return ResponseHelper.getErrorResponse("Group is not existed.", HttpStatus.BAD_REQUEST);
+		}
+		
+		return ResponseHelper.getResponse(group, HttpStatus.OK);
 	}
 	
 	@PostMapping
