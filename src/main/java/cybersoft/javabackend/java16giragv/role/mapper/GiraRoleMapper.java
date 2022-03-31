@@ -1,5 +1,6 @@
 package cybersoft.javabackend.java16giragv.role.mapper;
 
+
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -11,4 +12,5 @@ public interface GiraRoleMapper {
 	GiraRoleMapper INSTANCE = Mappers.getMapper(GiraRoleMapper.class);
 	
 	GiraRole mapToEntity(GiraRoleDTO dto);
+	GiraRoleDTO toGiraRoleDTO(GiraRole role);
 }

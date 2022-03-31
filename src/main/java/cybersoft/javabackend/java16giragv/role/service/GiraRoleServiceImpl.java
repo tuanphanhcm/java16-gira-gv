@@ -3,6 +3,7 @@ package cybersoft.javabackend.java16giragv.role.service;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -23,8 +24,11 @@ public class GiraRoleServiceImpl implements GiraRoleService {
 	private GiraRoleRepository repository;
 
 	@Override
-	public List<GiraRole> findAllEntity() {
-		return repository.findAll();
+	public List<GiraRoleDTO> findAllEntity() {
+		List<GiraRole> roles = repository.findAll();
+		return roles.stream()
+				.map(role -> GiraRoleMapper.INSTANCE.toGiraRoleDTO(role))
+				.collect(Collectors.toList());
 	}
 
 	@Override
