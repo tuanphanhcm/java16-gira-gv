@@ -3,7 +3,10 @@ package cybersoft.javabackend.java16giragv.role.model;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -34,4 +37,13 @@ public class GiraRole extends BaseEntity {
 	@JsonIgnore
 	@ManyToMany(mappedBy = "roles")
 	private Set<GiraGroup> groups = new LinkedHashSet();
+	
+	@JsonIgnore
+	@ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	@JoinTable(
+		name = "gira_role_program",
+		joinColumns = @JoinColumn(name = "role_id"),
+		inverseJoinColumns = @JoinColumn(name = "program_id")
+	)
+	private Set<GiraProgram> programs = new LinkedHashSet();
 }
