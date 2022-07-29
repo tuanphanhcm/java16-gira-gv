@@ -9,13 +9,14 @@ spring:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
     password: admin
-    
+
   jpa:
     hibernate:
       ddl-auto: validate
     generate-ddl: false
     show-sql: true
-    
+
+
   flyway:
     enabled: true
     driver-class-name: org.postgresql.Driver
